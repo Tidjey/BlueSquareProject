@@ -33,11 +33,13 @@
             </div>
         </nav>
     </header>
-    <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
-          </ol>
-    </nav>
+            </ol>
+        </nav>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -46,7 +48,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - BlueSquareBugTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - BlueSquareBugTracker by Jérémy Favre
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

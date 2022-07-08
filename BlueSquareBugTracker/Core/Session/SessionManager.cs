@@ -13,9 +13,9 @@ namespace BlueSquareBugTracker.Core.Session
             DbContext = dbContext;
             long? UserId = httpContext.HttpContext.Session.GetInt32("UserId");
             if (env.IsDevelopment())
-                Current = DbContext.Users.FirstOrDefault(x => x.Id == 2);
+                Current = DbContext.User.FirstOrDefault(x => x.Id == 2);
             else if (UserId.HasValue)
-                Current = DbContext.Users.FirstOrDefault(x => x.Id == UserId);
+                Current = DbContext.User.FirstOrDefault(x => x.Id == UserId);
         }
         public bool AuthenticatedUser()
         {

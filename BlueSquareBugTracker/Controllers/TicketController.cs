@@ -22,7 +22,14 @@ namespace BlueSquareBugTracker.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            Dictionary<int, string> t = _dbContext.TicketType.ToList().ToDictionary(x => x.Id, x => x.Name);
+            Dictionary<int, string> p = _dbContext.TicketPriority.ToList().ToDictionary(x => x.Id, x => x.Name);
+            TicketFormViewModel model = new TicketFormViewModel()
+            {
+                Types = t,
+                Priorities = p,
+            };
+            return View(model);
         }
         [HttpPost]
         public IActionResult Create(TicketFormViewModel model)

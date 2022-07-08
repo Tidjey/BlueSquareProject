@@ -60,7 +60,29 @@ namespace BlueSquareBugTracker.Data
                 }
             );
             #endregion
-            #region
+            #region TicketPriority
+            modelBuilder.Entity<TicketPriority>().HasData(
+                new TicketPriority
+                {
+                    Id = 1,
+                    Name = "Basse",
+                    Priority = 1
+                },
+                new TicketPriority
+                {
+                    Id = 2,
+                    Name = "Moyenne",
+                    Priority = 2
+                },
+                new TicketPriority
+                {
+                    Id = 3,
+                    Name = "Haute",
+                    Priority = 3
+                }
+            );
+            #endregion
+            #region User
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
@@ -68,7 +90,8 @@ namespace BlueSquareBugTracker.Data
                     UserRoleId = 1,
                     Created = DateTime.Now,
                     Mail = "client@xxx.yyy",
-                    Password = Crypt.Hash("**********")
+                    Password = Crypt.Hash("**********"),
+                    AvatarUrl = ""
                 },
                 new User
                 {
@@ -76,7 +99,8 @@ namespace BlueSquareBugTracker.Data
                     UserRoleId = 2,
                     Created = DateTime.Now,
                     Mail = "operator@xxx.yyy",
-                    Password = Crypt.Hash("**********")
+                    Password = Crypt.Hash("**********"),
+                    AvatarUrl = ""
                 },
                 new User
                 {
@@ -84,21 +108,22 @@ namespace BlueSquareBugTracker.Data
                     UserRoleId = 3,
                     Created = DateTime.Now,
                     Mail = "admin@xxx.yyy",
-                    Password = Crypt.Hash("**********")
+                    Password = Crypt.Hash("**********"),
+                    AvatarUrl = ""
                 }
             );
             #endregion
         }
         #region DbSets
-        public virtual DbSet<Document> Documents {get;set; }
-        public virtual DbSet<Ticket> Tickets { get; set; }
-        public virtual DbSet<TicketActivity> TicketActivities { get; set; }
-        public virtual DbSet<TicketDocument> TicketDocuments { get; set; }
-        public virtual DbSet<TicketMessage> TicketMessages { get; set; }
-        public virtual DbSet<TicketPriority> TicketPriorities { get; set; }
-        public virtual DbSet<TicketType> TicketTypes { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<Document> Document { get;set; }
+        public virtual DbSet<Ticket> Ticket { get; set; }
+        public virtual DbSet<TicketActivity> TicketActivity { get; set; }
+        public virtual DbSet<TicketDocument> TicketDocument { get; set; }
+        public virtual DbSet<TicketMessage> TicketMessage { get; set; }
+        public virtual DbSet<TicketPriority> TicketPriority { get; set; }
+        public virtual DbSet<TicketType> TicketType { get; set; }
+        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserRole> UserRole { get; set; }
         #endregion
     }
 }

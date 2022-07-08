@@ -12,15 +12,9 @@ namespace BlueSquareBugTracker.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return RedirectToAction("Create", "Ticket");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
