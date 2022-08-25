@@ -20,13 +20,13 @@ namespace BlueSquareBugTracker.Data.Entities
         public string Password { get; set; }
         public DateTime Created { get; set; }
         public string AvatarUrl { get; set; }
-        public ICollection<Ticket> OwnedTickets { get; set; }
-        public ICollection<Ticket> InChargeTickets { get; set; }
+        public virtual ICollection<Ticket> OwnedTickets { get; set; }
+        public virtual ICollection<Ticket> InChargeTickets { get; set; }
         public int? UserRoleId { get; set; }
-        public UserRole UserRole { get; set; }
-        public ICollection<Document> Documents { get; set; }
-        public ICollection<TicketActivity> TicketActivities { get; set; }
-        public ICollection<TicketMessage> TicketMessages { get; set; }
+        public virtual UserRole UserRole { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<TicketActivity> TicketActivities { get; set; }
+        public virtual ICollection<TicketMessage> TicketMessages { get; set; }
     }
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {

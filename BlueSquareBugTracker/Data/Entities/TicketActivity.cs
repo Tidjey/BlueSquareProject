@@ -9,9 +9,9 @@ namespace BlueSquareBugTracker.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int TicketId { get; set; }
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
         public int? UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
         public DateTime Created { get; set; }
     }
     public class TicketActivityConfiguration : IEntityTypeConfiguration<TicketActivity>

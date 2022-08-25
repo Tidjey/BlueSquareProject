@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Vos tickets";
+}
+@model ICollection<Ticket>
+<div class="row">
+    <ul class="list-group">
+    @foreach(var Ticket in Model)
+    {
+        <a class="list-group-item" asp-action="Read" asp-controller="Ticket" asp-route-id="@Ticket.Id">
+        <div class="col">
+            @Ticket.Title
+        </div>    
+        <div class="col">
+            @Ticket.Owner.Mail
+        </div>    
+        <div class="col">
+            @Ticket.Owner.Created.ToString("dd/MM/yyyy hh:mm:ss")
+        </div>    
+        <div class="col">
+            @Ticket.State
+        </div>
+        </a>
+    }
+
+    </ul>
+        
+
+</div>

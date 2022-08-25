@@ -6,8 +6,16 @@ namespace BlueSquareBugTracker.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
+        { 
+
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            ApllyConfigurations(modelBuilder);
+            Seeding(modelBuilder);
+        }
+        protected void ApllyConfigurations(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new DocumentConfiguration());
             modelBuilder.ApplyConfiguration(new TicketConfiguration());
@@ -18,7 +26,7 @@ namespace BlueSquareBugTracker.Data
             modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserRoleConfiguration());
-            Seeding(modelBuilder);
+
         }
         protected void Seeding(ModelBuilder modelBuilder)
         {

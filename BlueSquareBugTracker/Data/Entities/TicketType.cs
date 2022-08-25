@@ -14,7 +14,7 @@ namespace BlueSquareBugTracker.Data.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int Order { get; set; }
-        public ICollection<Ticket> Tickets { get; set; }
+        public virtual ICollection<Ticket> Tickets { get; set; }
     }
     public class TicketTypeConfiguration : IEntityTypeConfiguration<TicketType>
     {

@@ -9,13 +9,16 @@ namespace BlueSquareBugTracker.Data.Entities
         public Ticket()
         {
             Documents = new HashSet<TicketDocument>();
+            Activities = new HashSet<TicketActivity>();
+            Messages = new HashSet<TicketMessage>();
+
         }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int? OwnerId { get; set; }
-        public User Owner { get; set; }
+        public virtual User Owner { get; set; }
         public int? InChargeId { get; set; }
-        public User InCharge { get; set; }
+        public virtual User InCharge { get; set; }
         public string Title { get; set; }
         public DateTime CreatedDate { get; set; }
         public string Description { get; set; }
@@ -25,8 +28,10 @@ namespace BlueSquareBugTracker.Data.Entities
         public virtual TicketPriority Priority{ get; set; }
         public int? TicketTypeId { get; set; }
         public virtual TicketType Type { get; set; }
-        public ICollection<TicketActivity> Activities { get; set; }
-        public ICollection<TicketMessage> Messages { get; set; }
+        public int? TicketStateId { get; set; }
+        public virtual TicketState State  { get; set; }
+        public virtual ICollection<TicketActivity> Activities { get; set; }
+        public virtual ICollection<TicketMessage> Messages { get; set; }
     }
     public class TicketConfiguration : IEntityTypeConfiguration<Ticket>
     {
@@ -38,6 +43,7 @@ namespace BlueSquareBugTracker.Data.Entities
             builder.HasMany(x => x.Documents).WithOne(x => x.Ticket).HasForeignKey(x => x.TicketId).OnDelete(DeleteBehavior.SetNull);
             builder.HasOne(x => x.Priority).WithMany(x => x.Tickets).HasForeignKey(x => x.TicketPriorityId).OnDelete(DeleteBehavior.SetNull);
             builder.HasOne(x => x.Type).WithMany(x => x.Tickets).HasForeignKey(x => x.TicketPriorityId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(x => x.State).WithMany(x => x.Tickets).HasForeignKey(x => x.TicketStateId).OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

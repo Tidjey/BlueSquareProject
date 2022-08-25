@@ -4,6 +4,7 @@ using BlueSquareBugTracker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlueSquareBugTracker.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220710094849_Seeding")]
+    partial class Seeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,10 +82,6 @@ namespace BlueSquareBugTracker.Data.Migrations
                         .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<int?>("TicketStateId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
                     b.Property<int?>("TicketTypeId")
                         .IsRequired()
                         .HasColumnType("int");
@@ -99,8 +97,6 @@ namespace BlueSquareBugTracker.Data.Migrations
                     b.HasIndex("OwnerId");
 
                     b.HasIndex("TicketPriorityId");
-
-                    b.HasIndex("TicketStateId");
 
                     b.ToTable("Ticket");
                 });
@@ -227,26 +223,6 @@ namespace BlueSquareBugTracker.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BlueSquareBugTracker.Data.Entities.TicketState", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TicketState");
-                });
-
             modelBuilder.Entity("BlueSquareBugTracker.Data.Entities.TicketType", b =>
                 {
                     b.Property<int>("Id")
@@ -325,7 +301,7 @@ namespace BlueSquareBugTracker.Data.Migrations
                         {
                             Id = 1,
                             AvatarUrl = "",
-                            Created = new DateTime(2022, 7, 10, 12, 47, 11, 785, DateTimeKind.Local).AddTicks(4679),
+                            Created = new DateTime(2022, 7, 10, 11, 48, 49, 179, DateTimeKind.Local).AddTicks(5350),
                             Mail = "client@xxx.yyy",
                             Password = "LPvaio5Lqv2pDPGbHc5tTbKSOfJxJ/8uDW2QvO29D1A=",
                             UserRoleId = 1
@@ -334,7 +310,7 @@ namespace BlueSquareBugTracker.Data.Migrations
                         {
                             Id = 2,
                             AvatarUrl = "",
-                            Created = new DateTime(2022, 7, 10, 12, 47, 11, 800, DateTimeKind.Local).AddTicks(3098),
+                            Created = new DateTime(2022, 7, 10, 11, 48, 49, 192, DateTimeKind.Local).AddTicks(6654),
                             Mail = "operator@xxx.yyy",
                             Password = "LPvaio5Lqv2pDPGbHc5tTbKSOfJxJ/8uDW2QvO29D1A=",
                             UserRoleId = 2
@@ -343,7 +319,7 @@ namespace BlueSquareBugTracker.Data.Migrations
                         {
                             Id = 3,
                             AvatarUrl = "",
-                            Created = new DateTime(2022, 7, 10, 12, 47, 11, 813, DateTimeKind.Local).AddTicks(1374),
+                            Created = new DateTime(2022, 7, 10, 11, 48, 49, 205, DateTimeKind.Local).AddTicks(7823),
                             Mail = "admin@xxx.yyy",
                             Password = "LPvaio5Lqv2pDPGbHc5tTbKSOfJxJ/8uDW2QvO29D1A=",
                             UserRoleId = 3
@@ -421,19 +397,11 @@ namespace BlueSquareBugTracker.Data.Migrations
                         .OnDelete(DeleteBehavior.SetNull)
                         .IsRequired();
 
-                    b.HasOne("BlueSquareBugTracker.Data.Entities.TicketState", "State")
-                        .WithMany("Tickets")
-                        .HasForeignKey("TicketStateId")
-                        .OnDelete(DeleteBehavior.SetNull)
-                        .IsRequired();
-
                     b.Navigation("InCharge");
 
                     b.Navigation("Owner");
 
                     b.Navigation("Priority");
-
-                    b.Navigation("State");
 
                     b.Navigation("Type");
                 });
@@ -521,11 +489,6 @@ namespace BlueSquareBugTracker.Data.Migrations
                 });
 
             modelBuilder.Entity("BlueSquareBugTracker.Data.Entities.TicketPriority", b =>
-                {
-                    b.Navigation("Tickets");
-                });
-
-            modelBuilder.Entity("BlueSquareBugTracker.Data.Entities.TicketState", b =>
                 {
                     b.Navigation("Tickets");
                 });

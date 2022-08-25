@@ -9,9 +9,9 @@ namespace BlueSquareBugTracker.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int? TicketId { get; set; }
-        public Ticket Ticket { get; set; }
+        public virtual Ticket Ticket { get; set; }
         public int? DocumentId { get; set; }
-        public Document Document { get; set; }
+        public virtual Document Document { get; set; }
     }
     public class TicketDocumentConfiguration : IEntityTypeConfiguration<TicketDocument>
     {

@@ -6,13 +6,17 @@ namespace BlueSquareBugTracker.Data.Entities
 {
     public class Document
     {
+        public Document()
+        {
+            TicketDocuments = new HashSet<TicketDocument>();
+        }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string FileName { get; set; }
         public string Url { get; set; }
         public int? UploaderId { get; set; }
-        public User Uploader { get; set; }
-        public ICollection<TicketDocument> TicketDocuments { get; set; }
+        public virtual User Uploader { get; set; }
+        public virtual ICollection<TicketDocument> TicketDocuments { get; set; }
 
     }
     public class DocumentConfiguration : IEntityTypeConfiguration<Document>

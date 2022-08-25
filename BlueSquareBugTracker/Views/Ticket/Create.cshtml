@@ -33,7 +33,7 @@
         <label class="form-label">Contexte *</label>
         <p>Veuillez décrire le contexte du problème</p>
         <p>Exemple : utilisateur connecté, chemin emprunté jusqu'à la page, contenu du formulaire,etc.</p>
-        <textarea class="form-control" asp-for="Description" id="Ticket-Form-Description"></textarea>
+        <textarea class="form-control" asp-for="Context" id="Ticket-Form-Context"></textarea>
     </div>
     <div class="form-group">
         <label class="form-label">Documents</label>
@@ -42,7 +42,7 @@
         <input asp-for="Documents" type="file" multiple>
     </div>
     <div class="form-group row">
-        <div class="col align-self-end">
+        <div class="col ml-md-auto">
             <button type="submit" class="btn btn-outline-primary">Envoyer</button>
         </div>
     </div>

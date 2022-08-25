@@ -17,24 +17,30 @@ namespace BlueSquareBugTracker.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+
+            return View(_dbContext.Ticket.OrderByDescending(x => x.CreatedDate).ToList());
         }
         [HttpGet]
         public IActionResult Create()
         {
             Dictionary<int, string> t = _dbContext.TicketType.ToList().ToDictionary(x => x.Id, x => x.Name);
             Dictionary<int, string> p = _dbContext.TicketPriority.ToList().ToDictionary(x => x.Id, x => x.Name);
-            TicketFormViewModel model = new TicketFormViewModel()
+            TicketFormViewModel model = new TicketFormViewModel
             {
                 Types = t,
-                Priorities = p,
+                Priorities = p
             };
+            
             return View(model);
         }
         [HttpPost]
         public IActionResult Create(TicketFormViewModel model)
         {
-            if(!ModelState.IsValid)
+            Dictionary<int, string> t = _dbContext.TicketType.ToList().ToDictionary(x => x.Id, x => x.Name);
+            Dictionary<int, string> p = _dbContext.TicketPriority.ToList().ToDictionary(x => x.Id, x => x.Name);
+            model.Types = t;
+            model.Priorities = p;
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
